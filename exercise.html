@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>PfG Coding Session 2</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/js/bootstrap.min.js"></script>
+
+    <link rel = "stylesheet" href = "styles.css">
+    <script src = "data.js"></script>
+
+</head>
+<body>
+    <h1>PfG Coding Session 2</h1>
+
+    <p>This coding session will look at how to create html elements, apply styles and position them on the page.</p>
+    <a href = "solution.html">Click here to go to solution</a>
+
+    <h2>Exercise 1: Styling an element</h2>
+    <p>Look at this div element:</p>
+
+    <div>Indicator 1</div>
+
+    <p>There is no styling applied to this div. It looks exactly like all the other text on the page.</p>
+
+    <h3>1.1: Inline</h3>
+
+    <p>Paste the following style attributes into the div tag for Indicator 2 below:</p>
+    <p>"width: 150px; text-align: center; background-color: #008675; color: #ffffff; font-size: 18pt; margin: 10px"</p>
+
+    <div>Indicator 2</div>
+
+    <h3>1.2: Using CSS</h3>
+
+    <p>The same result can be obtained by appling a class to the div element.</p>
+    <p>Look at the linked style sheet "styles.css" in this folder and you will see a style with the name "indicator-div"
+        which contains all the same properties we applied above</p>
+    <p>Add the class attribute "indicator-div" to the div for Indicator 3 below:</p>
+
+    <div>Indicator 3</div>
+
+    <h3>1.3: Using javascript</h3>
+
+    <p>We can use javascript change the style of the element too. The simplest way to do this is to first give the element an id.</p>
+    <p>Add the id attribute "ind4" to the div element below</p>
+
+    <div id = "ind4">Indicator 4</div>
+
+    <p>Next open up some script tags and use javascript to add the class "indicator-div" to the div with id "ind3"</p>
+
+    <script>
+        document.getElementById("ind4");
+    </script>
+
+    <p>We can also use javascript to alter some element of the inline style. Change the colour of Indicator 4 to blue, hexcode: "#142062" below</p>
+
+    <script>
+        document.getElementById("ind4");
+    </script>
+
+    <div id = "ex2">
+        <h2>Exercise 2: Creating an element using javascript</h2>
+        <p>Use javascript below to create a div element for Indicator 5, give it the "indicator-div" class,
+            insert the text "indicator 5" and finally place it inside the div element with the id "ex2".</p>
+    </div>   
+
+    <script>
+
+        
+    </script>
+
+    <h2>Exercise 3: Creating elements from data</h2>
+
+    <p>Look at the variable "ex3_data" contained in the attached "data.js" script.</p>
+    <p>We will use the contents of that data object to create page elements</p>
+
+    
+    <h3>3.1: Creating elements based on object keys</h3>
+
+    <p>Using javascript we will loop through each of the object keys in the data and create a div element containing each key.
+        The divs will all be placed as child elements of the div with id "ex3_1"</p>
+
+    <div id = "ex3_1" class = "row"></div>
+
+    <script>
+        for(let i = 0; i < Object.keys(ex3_data).length; i ++) {
+
+        }
+    </script>
+
+    <p>Notice how if we change any of the key names in our data.js file the text content updates in the html output.</p>
+
+    <h3>3.2: Styling elements based on object values</h3>
+    <div id = "ex3_2" class = "row"></div>
+
+    <p>Next we will repeat the exercise above. However we will change a style element, the background colour, based on whether the value is above or below 50.</p>
+
+    <script>
+
+    </script>
+
+    <p>Note how if we change the values the colours will update in the html output.</p>
+    
+    <h3>3.3: Sorting elements into rows based on object values</h3>
+    <p>In this exercise we will repeat the steps above and this time add a step that will place those values
+        under 50 in the first row and the rest of the elements in the second row</p>
+
+    <div id = "row1" class = "row">
+        <div class = "row-heading">Under 50:</div>
+    </div>
+    <div id = "row2" class = "row">
+        <div class = "row-heading">Over 50:</div>
+    </div>   
+
+    <script>
+
+    </script>
+
+    <h2>Exercise 4: Read from data portal</h2>
+
+    <p>In this exercise we will use a function that fetches data from an api URL on the NISRA Pre-production data portal</p>
+
+    <p>Using the data fetched we will do a simple calculation based on whether the indicator has increased or decreased in the
+        most recent year. This will be used to colour the div element. We will then place the indicator name inside the div.</p>
+
+    <div id = "ex4" class = "row"></div>
+
+    <script>
+
+        async function getData(matrix) {
+            // URL to fetch data from Pre-production data portal
+            api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
+            // Fetch data and store in object fetched_data
+            const response = await fetch(api_url);
+            const fetched_data = await response.json();
+              // The object keys value and label are the only ones we are interested in
+
+
+        }
+
+        // getData("INDEXSALENI"); // Run the function on External Sales Rate
+        // getData("INDGREENHGNI");  // and on Greenhouse Gases
+
+
+    </script>
+
+</body>
+</html>
